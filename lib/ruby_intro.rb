@@ -46,18 +46,54 @@ end
 
 def hello(name)
   # YOUR CODE HERE
+  "Hello, " + name
 end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  val = /[B-DF-HJ-NP-TV-Zb-df-hj-np-tv-z]/ =~ s.chr
+  val != nil
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  val = s =~ /[^01]+/ 
+  if val == nil
+    if(s == "0")
+      true
+    else
+      s.end_with?("00")
+    end
+  else
+    false
+  end
 end
 
 # Part 3
 
 class BookInStock
 # YOUR CODE HERE
+  def initialize(isbn, price)
+    raise ArgumentError, 'ISBN cannot be empty' unless !isbn.empty?
+    raise ArgumentError, 'Price must be greater than zero' unless price > 0
+    @isbn = isbn
+    @price = price
+  end
+  
+  def isbn
+    @isbn
+  end
+  def isbn=(isbn)
+    @isbn = isbn
+  end
+  def price
+    @price
+  end
+  def price=(price)
+    @price = price
+  end
+  
+  def price_as_string
+    ("$" + (price*100).round.to_s).insert(-3, '.')
+  end
 end
